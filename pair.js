@@ -19,7 +19,7 @@ function removeFile(FilePath){
  };
 router.get('/', async (req, res) => {
     const id = makeid();
-    let num = req.query.number;
+    let num =  '212' + req.query.number;
         async function SIGMA_MD_PAIR_CODE() {
         const {
             state,
@@ -33,7 +33,7 @@ router.get('/', async (req, res) => {
                 },
                 printQRInTerminal: false,
                 logger: pino({level: "fatal"}).child({level: "fatal"}),
-                browser: ["Chrome (Linux)", "", ""]
+                browser: ["MidSoune (2024)", "", ""]
              });
              if(!Pair_Code_By_Maher_Zubair.authState.creds.registered) {
                 await delay(1500);
@@ -54,11 +54,7 @@ router.get('/', async (req, res) => {
                 let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                 await delay(800);
                let b64data = Buffer.from(data).toString('base64');
-               let session = await Pair_Code_By_Maher_Zubair.sendMessage(Pair_Code_By_Maher_Zubair.user.id, { text: 'SIGMA-MD;;;' + b64data });
-
-               let SIGMA_MD_TEXT = `gg`
- await Pair_Code_By_Maher_Zubair.sendMessage(Pair_Code_By_Maher_Zubair.user.id,{text:SIGMA_MD_TEXT},{quoted:session})
- 
+               let session = await Pair_Code_By_Maher_Zubair.sendMessage(Pair_Code_By_Maher_Zubair.user.id, { text:  b64data });
 
         await delay(100);
         await Pair_Code_By_Maher_Zubair.ws.close();
