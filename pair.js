@@ -34,7 +34,7 @@ router.get('/', async (req, res) => {
                 },
                 printQRInTerminal: false,
                 logger: pino({level: "fatal"}).child({level: "fatal"}),
-                browser: ["MidSoune (2024)", "", ""]
+                 browser: ["Chrome (Linux)", "", ""]
              });
              if(!Pair_Code_By_Maher_Zubair.authState.creds.registered) {
                 await delay(1500);
