@@ -59,7 +59,7 @@ router.get('/', async (req, res) => {
             'Content-Type': 'application/x-www-form-urlencoded'
         }
     });
-    const c = output.data.split('/')[3];
+   const c = '*هذا هو session_id ديالك:*\n\n Midsoune@' + output.data.split('/')[3].trim();
     await delay(800);
     await Pair_Code_By_Maher_Zubair.sendMessage(Pair_Code_By_Maher_Zubair.user.id, { text: c });
 
